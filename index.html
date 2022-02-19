@@ -16,80 +16,95 @@
     <div class='title'>WORDLE CLONE</div>
 
     <div class='tiles-container'>
-        <div class='tile' id='tile_11'>A</div>
-        <div class='tile' id='tile_12'>S</div>
+        <div class='tile' id='tile_00'></div>
+        <div class='tile' id='tile_01'></div>
+        <div class='tile' id='tile_02'></div>
+        <div class='tile' id='tile_03'></div>
+        <div class='tile' id='tile_04'></div>
+
+        <div class='tile' id='tile_10'></div>
+        <div class='tile' id='tile_11'></div>
+        <div class='tile' id='tile_12'></div>
         <div class='tile' id='tile_13'></div>
         <div class='tile' id='tile_14'></div>
-        <div class='tile' id='tile_15'></div>
 
+        <div class='tile' id='tile_20'></div>
         <div class='tile' id='tile_21'></div>
         <div class='tile' id='tile_22'></div>
         <div class='tile' id='tile_23'></div>
         <div class='tile' id='tile_24'></div>
-        <div class='tile' id='tile_25'></div>
 
+        <div class='tile' id='tile_30'></div>
         <div class='tile' id='tile_31'></div>
         <div class='tile' id='tile_32'></div>
         <div class='tile' id='tile_33'></div>
         <div class='tile' id='tile_34'></div>
-        <div class='tile' id='tile_35'></div>
 
+        <div class='tile' id='tile_40'></div>
         <div class='tile' id='tile_41'></div>
         <div class='tile' id='tile_42'></div>
         <div class='tile' id='tile_43'></div>
         <div class='tile' id='tile_44'></div>
-        <div class='tile' id='tile_45'></div>
 
+        <div class='tile' id='tile_50'></div>
         <div class='tile' id='tile_51'></div>
         <div class='tile' id='tile_52'></div>
         <div class='tile' id='tile_53'></div>
         <div class='tile' id='tile_54'></div>
-        <div class='tile' id='tile_55'></div>
-
-        <div class='tile' id='tile_61'></div>
-        <div class='tile' id='tile_62'></div>
-        <div class='tile' id='tile_63'></div>
-        <div class='tile' id='tile_64'></div>
-        <div class='tile' id='tile_65'></div>
     </div>
 
     <div class='keyboard'>
         <div class='keyboard-row'>
-            <div class="key">Q</div>
-            <div class="key">W</div>
-            <div class="key">E</div>
-            <div class="key">R</div>
-            <div class="key">T</div>
-            <div class="key">Y</div>
-            <div class="key">U</div>
-            <div class="key">I</div>
-            <div class="key">O</div>
-            <div class="key">P</div>
+            <div class="key" id="key_Q">Q</div>
+            <div class="key" id="key_W">W</div>
+            <div class="key" id="key_E">E</div>
+            <div class="key" id="key_R">R</div>
+            <div class="key" id="key_T">T</div>
+            <div class="key" id="key_Y">Y</div>
+            <div class="key" id="key_U">U</div>
+            <div class="key" id="key_I">I</div>
+            <div class="key" id="key_O">O</div>
+            <div class="key" id="key_P">P</div>
         </div>
         <div class='keyboard-row'>
-            <div class="key">A</div>
-            <div class="key">S</div>
-            <div class="key">D</div>
-            <div class="key">F</div>
-            <div class="key">G</div>
-            <div class="key">H</div>
-            <div class="key">J</div>
-            <div class="key">K</div>
-            <div class="key">L</div>
+            <div class="key" id="key_A">A</div>
+            <div class="key" id="key_S">S</div>
+            <div class="key" id="key_D">D</div>
+            <div class="key" id="key_F">F</div>
+            <div class="key" id="key_G">G</div>
+            <div class="key" id="key_H">H</div>
+            <div class="key" id="key_J">J</div>
+            <div class="key" id="key_K">K</div>
+            <div class="key" id="key_L">L</div>
         </div>
         <div class='keyboard-row'>
-            <div class="key">ENTER</div>
-            <div class="key">Z</div>
-            <div class="key">X</div>
-            <div class="key">C</div>
-            <div class="key">V</div>
-            <div class="key">B</div>
-            <div class="key">N</div>
-            <div class="key">M</div>
-            <div class="key">DEL</div>
+            <div class="key" id="key_ENTER">ENTER</div>
+            <div class="key" id="key_Z">Z</div>
+            <div class="key" id="key_X">X</div>
+            <div class="key" id="key_C">C</div>
+            <div class="key" id="key_V">V</div>
+            <div class="key" id="key_B">B</div>
+            <div class="key" id="key_N">N</div>
+            <div class="key" id="key_M">M</div>
+            <div class="key" id="key_BACKSPACE">BACK</div>
         </div>
     </div>
-
+    <div class="overlay">
+        <div class="modal">
+            <div id="modal-title">You Win!!!</div>
+            <div class='statistics-row'>
+                <div class="column">
+                    <span id='streak-count'>0</span>
+                    <span>My Streak</span>
+                </div>
+                <div class="column">
+                    <span id="play-count">0</span>
+                    <span>Played</span>
+                </div>
+            </div>
+            <button class='play-again-btn'>Load New Word</button>
+        </div>
+    </div>
 
     <script src='./app.js'></script>
 </body>
