@@ -4,7 +4,7 @@
     --primary-color: #818384;
     --secondary-color: #FFFFFF;
     --modal-color: #121213;
-    --button-color: #538D4E
+    --button-color: #538D4E;
     box-sizing: border-box;
     font-family: 'Source Sans Pro', sans-serif;
     background-color: var(--modal-color);
@@ -120,4 +120,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.rotate-tile{
+    animation: rotate-anim 1s;
+}
+
+@keyframes rotate-anim{
+    0%{transform: rotateX(0deg);}
+    50%{transform: rotateX(180deg);}
+    100%{transform: rotateX(0deg);}
+}
+
+.shake-tile{
+    animation: shake-anim 1s;
+}
+
+@keyframes shake-anim {
+    0%{transform: translateY(5px);}
+    50%{transform: translateY(-5px);}
+    100%{transform: translateY(0px);}
 }
