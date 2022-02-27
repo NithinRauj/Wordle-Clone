@@ -15291,13 +15291,11 @@ const targetWords = [
     "shave"
 ];
 
-const state = {
+let state = {
     rowIndex: 0,
     columnIndex: 0,
     guesses: [[], [], [], [], [], []],
     targetWord: targetWords[Math.floor(Math.random() * targetWords.length)].toUpperCase(),
-    streak: 0,
-    plays: 0,
     canType: true
 };
 
@@ -15310,10 +15308,6 @@ const addKeyListeners = () => {
         });
     }
 }
-
-window.addEventListener('keydown', (e) => {
-    inputGuess(e.key);
-});
 
 const inputGuess = (key) => {
     document.getElementById('alert').classList.remove('shake-alert');
@@ -15377,20 +15371,18 @@ const compareGuess = () => {
     });
     setTimeout(() => {
         if (correctCount === 5) {
-            document.getElementById('modal-title').textContent = 'YOU WIN 😄';
-            document.getElementById('target-word').textContent = state.targetWord;
-            document.getElementById('streak-count').textContent = `${state.streak}`;
-            document.getElementById('plays-count').textContent = `${state.plays}`;
-            document.getElementsByClassName('overlay')[0].style.display = 'block';
-
-            state.canType = false;
+            state.plays += 1;
+            state.currentStreak += 1;
+            if (state.currentStreak > state.maxStreak) {
+                state.maxStreak = state.currentStreak;
+            }
+            showModal(true);
+            setPlayerStats();
         } else if (correctCount !== 5 && state.rowIndex === 5) {
-            document.getElementById('modal-title').textContent = 'YOU LOSE 😔';
-            document.getElementById('target-word').textContent = state.targetWord;
-            document.getElementById('streak-count').textContent = `${state.streak}`;
-            document.getElementById('plays-count').textContent = `${state.plays}`;
-            document.getElementsByClassName('overlay')[0].style.display = 'block';
-            state.canType = false;
+            state.plays += 1;
+            state.currentStreak = 0;
+            showModal();
+            setPlayerStats();
         } else {
             state.canType = true;
         }
@@ -15399,9 +15391,60 @@ const compareGuess = () => {
     }, 2100);
 }
 
+const showModal = (isWin = false) => {
+    document.getElementById('modal-title').textContent = isWin ? 'YOU WIN 😄' : 'YOU LOSE 😔';
+    document.getElementById('target-word').textContent = state.targetWord;
+    document.getElementById('current-streak-count').textContent = `${state.currentStreak}`;
+    document.getElementById('max-streak-count').textContent = `${state.maxStreak}`;
+    document.getElementById('plays-count').textContent = `${state.plays}`;
+    document.getElementsByClassName('overlay')[0].style.display = 'block';
+    state.canType = false;
+}
+
 const isAlphabet = (key) => {
     return key.length < 2 && (/[A-Z]/).test(key.toUpperCase());
 }
 
-addKeyListeners();
+const setPlayerStats = () => {
+    const stats = {
+        currentStreak: state.currentStreak,
+        maxStreak: state.maxStreak,
+        plays: state.plays
+    };
+
+    localStorage.setItem('player_stats', JSON.stringify(stats));
+}
+
+const initializeGame = () => {
+    const defaultStats = {
+        currentStreak: 0,
+        maxStreak: 0,
+        plays: 0
+    };
+
+    try {
+        const stats = JSON.parse(localStorage.getItem('player_stats'));
+        state = {
+            ...state,
+            ...(!stats ? defaultStats : stats)
+        }
+    } catch (err) {
+        state = {
+            ...state,
+            ...defaultStats
+        }
+    }
+    addKeyListeners();
+    console.log(state);
+    window.addEventListener('keydown', (e) => {
+        inputGuess(e.key);
+    });
+    document.getElementById('play-again-btn').onclick = function () {
+        window.location.reload();
+    }
+}
+
+(() => {
+    initializeGame();
+})();
 
